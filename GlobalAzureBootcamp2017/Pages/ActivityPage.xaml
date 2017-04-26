@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	x:Class="GlobalAzureBootcamp2017.ActivityPage"
+	xmlns:viewModels="clr-namespace:GlobalAzureBootcamp2017; assembly=GlobalAzureBootcamp2017"
+	xmlns:resources="clr-namespace:GlobalAzureBootcamp2017; assembly=GlobalAzureBootcamp2017"
+	BackgroundColor="{StaticResource BackgroundColor}">
+	<ContentPage.BindingContext>
+		<viewModels:ActivityViewModel />
+	</ContentPage.BindingContext>
+	<ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="BookmarkItem" Name="{x:Static resources:Messages.Bookmark}" Icon="{x:Static resources:Images.Bookmark}" Clicked="BookmarkItem_Clicked" />
+    </ContentPage.ToolbarItems>
+	<ContentPage.Content>
+		<ScrollView Orientation="Vertical">
+			<StackLayout Orientation="Vertical" Style="{StaticResource RootStackLayoutStyle}">
+				<Label Text="{Binding Name}" Style="{StaticResource TitleLabelStyle}" /> 
+				<Label Text="{Binding Time}" Style="{StaticResource SubtitleLabelStyle}" /> 
+				<Label FormattedText="{Binding Info}" /> 
+				<Label Text="{Binding SpeakerName}" Style="{StaticResource SubtitleLabelStyle}" /> 
+				<Label Text="{Binding SpeakerInfo}" />
+				<StackLayout x:Name="SocialsLayout" Orientation="Horizontal"/>
+			</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="GlobalAzureBootcamp2017.App" >
+	<Application.Resources>
+		<ResourceDictionary>
+			<!--Colors--> 
+            <Color x:Key="BackgroundColor">#F9F9F9</Color>
+            <Color x:Key="PrimaryColor">#487bc6</Color>
+            <Color x:Key="PrimaryDarkColor">#004f95</Color>
+			<Color x:Key="PrimaryLightColor">#7eaaf9</Color>
+			<Color x:Key="AccentColor">#ff4081</Color>
+			<Color x:Key="PrimaryTextColor">#212121</Color>
+            <Color x:Key="SecondaryTextColor">#757575</Color>
+			<Color x:Key="PrimaryLightTextColor">#FEFEFE</Color>
+			<Color x:Key="IconsColor">#FFFFFF</Color>
+			<Color x:Key="DividerColor">#BDBDBD</Color>
+
+
+			<!--Styles-->
+			<Style x:Key="RootStackLayoutStyle" TargetType="StackLayout" >
+				<Setter Property="Padding" Value="15,15,15,15" />
+			</Style>
+
+			<Style x:Key="CardLayoutStyle" TargetType="Grid" >
+				<Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="Padding" Value="10,10,10,10" />
+                <Setter Property="Margin" Value="10,5,10,5" />
+			</Style>
+
+			<Style x:Key="LabelStyle" TargetType="Label" BaseResourceKey="BodyStyle">
+		                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+				<Setter Property="FontSize" Value="16" />
+			</Style>
+			<Style x:Key="TitleLabelStyle" TargetType="Label" BaseResourceKey="TitleStyle">
+		                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+			</Style>
+			<Style x:Key="SubtitleLabelStyle" TargetType="Label" BaseResourceKey="SubtitleStyle">
+		                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+			</Style>
+			
+			<Style x:Key="ListItemLabelStyle" TargetType="Label" BaseResourceKey="ListItemTextStyle">
+		                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+			</Style>
+			<Style x:Key="ListItemDetailLabelStyle" TargetType="Label" BaseResourceKey="ListItemDetailTextStyle">
+		                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+			</Style>
+
+		</ResourceDictionary>
+		
+	</Application.Resources>
+</Application>

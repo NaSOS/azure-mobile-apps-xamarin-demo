@@ -1,0 +1,40 @@
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	x:Class="GlobalAzureBootcamp2017.EventUpdatesPage"
+	xmlns:resources="clr-namespace:GlobalAzureBootcamp2017; assembly=GlobalAzureBootcamp2017"
+	xmlns:controls="clr-namespace:GlobalAzureBootcamp2017; assembly=GlobalAzureBootcamp2017"
+	xmlns:viewModels="clr-namespace:GlobalAzureBootcamp2017; assembly=GlobalAzureBootcamp2017" 
+    BackgroundColor="{StaticResource BackgroundColor}">
+	<ContentPage.BindingContext>
+		<viewModels:EventUpdatesViewModel />
+	</ContentPage.BindingContext>
+	<ContentPage.Content>
+		<AbsoluteLayout>
+			<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0,1,0.1" IsVisible="{Binding IsEmptyMessageVisible}" Style="{StaticResource RootStackLayoutStyle}" >
+                <Label Text="{x:Static resources:Messages.NoNewsIsGoodNews}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Style="{StaticResource LabelStyle}" />
+            </StackLayout>
+			<ListView x:Name="EventUpdatesList" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" ItemSelected="EventUpdatesList_OnItemSelected" ItemsSource="{Binding Collection}" SeparatorVisibility="None" HasUnevenRows="True" IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy}" RefreshCommand="{Binding RefreshCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.BindingContext>
+                                <viewModels:EventUpdateViewModel />
+                            </ViewCell.BindingContext>
+                            <ViewCell.View>
+                                <Grid Style="{StaticResource CardLayoutStyle}" RowSpacing="5" ColumnSpacing="5" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Label Grid.Row="0" Text="{Binding Time}" Style="{StaticResource ListItemDetailLabelStyle}"/>
+                                    <Label Grid.Row="1" Text="{Binding Message}" Style="{StaticResource ListItemLabelStyle}" />
+                                </Grid>                                
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </AbsoluteLayout>
+	</ContentPage.Content>
+</ContentPage>
