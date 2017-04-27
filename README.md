@@ -1,6 +1,6 @@
 # GlobalAzureBootcamp2017
 
-Azure Mobile Apps and Xamarin demo for Global Azure Bootcamp 2017 in Athens, Greece to showcase how to create an Azure Mobile App and setup the client SDK.
+Azure Mobile Apps and Xamarin demo for Global Azure Bootcamp 2017 in Athens, Greece to showcase how to create an Azure Mobile App and setup the client SDK. The demo showcases:
 - Offline Sync
 - User Authentication
 - Push notifications
@@ -39,16 +39,16 @@ Step one, [Offline Sync](https://docs.microsoft.com/en-us/azure/app-service-mobi
 - Login to *Azure Portal* and select the Mobile App Service that you created.
 - Search for *Easy Tables*
 - First you need to configure *Easy Tables*:
--- 1. Add a new *Data Connection*
--- 2. Initialize your *App Service* to use *Easy Tables*
+	- 1. Add a new *Data Connection*
+	- 2. Initialize your *App Service* to use *Easy Tables*
 - Now you can create the required tables. Press *Add* and create 3 tables: `Event`, `Activity` and `Speaker` (do not set any permissions)
--- Event: the event, on our case the Global Azure Bootcamp 2017, Athens.
--- Activity: The scheduled activities of the Event
--- Speaker: The info of a Speaker (if the `ActivityType` is a `Talk`)
+	- Event: the event, on our case the Global Azure Bootcamp 2017, Athens.
+	- Activity: The scheduled activities of the Event
+	- Speaker: The info of a Speaker (if the `ActivityType` is a `Talk`)
 
 **Note:** Each table has the default columns: `id`, `createdAt`, `updatedAt`, `version` and `deleted`. There is no need to add any more columns as they will be created automatically upon data insertion.
 
-Now you can populate the tables with the initial data. This can be done through the app by uncommenting the `#define MIGRATION_ENABLED` on the `AzureService` class. By doing so you enable the execution of the `Migrate()` method that reads the Global Azure Bootcamp's schedule from a `JSON` formatted string and pushed the data to the backend. Upon completion, comment out that line again because we don't want this code to run on every app launch.
+Now you can populate the tables with the initial data. This can be done through the app by uncommenting the `#define MIGRATION_ENABLED` on the `AzureService` class. By doing so you enable the execution of the `Migrate()` method that reads the Global Azure Bootcamp's schedule from a `JSON` formatted string and pushed the data to the backend. Don't forget to comment out that line again upon completion because we don't want this code to run on every app launch.
 
 **NOTE:** Now your *Easy Tables* will have the required data. Notice that each table's schema is updated and includes the additional properties of it's respective model.
 
@@ -64,12 +64,12 @@ Step two, it's time to setup [User Authentication](https://docs.microsoft.com/en
 
 Now you will be able to see the list of the available *Authentication Providers*. Let's enable one (in our case Microsoft):
 - Select *Microsoft*
--- Follow [this](https://docs.microsoft.com/en-us/azure/app-service-mobile/app-service-mobile-how-to-configure-microsoft-authentication) for instructions on how to configure the appropriate Microsoft app.
--- Note the *AppId* and the *Application Secret*
-- Fill in the *Client Id* and *Client Secret* fields with *AppId* and Application Secret* respectively
+	- Follow [this](https://docs.microsoft.com/en-us/azure/app-service-mobile/app-service-mobile-how-to-configure-microsoft-authentication) for instructions on how to configure the appropriate Microsoft app
+	- Note the *AppId* and the *Application Secret*
+- Fill in the *Client Id* and *Client Secret* fields with *AppId* and *Application Secret* respectively
 - Leave the *Action to take when request is not authenticated* to *Allow Anonymous requests (no action)* because on our demo, for convenience, we are not going to restrict all tables
 
-Now you can enable authentication on the EasyTables to restrict access to authorised users only. To do so:
+Now you can enable authentication on the *Easy Tables* to restrict access to authorised users only. To do so:
 - Go back to *Easy Tables*
 - Create the table `UserActivity` and set all permissions to *Authenticated access only*
 
@@ -82,10 +82,10 @@ That's it, now only authenticated users will have access to `UserActivity` table
 Step three, [Push Notifications](https://docs.microsoft.com/en-us/azure/app-service-mobile/app-service-mobile-xamarin-forms-get-started-push):
 - On *Azure Portal*, select your *Mobile App Service*
 - Search for *Push* and press *Connect*
--- Select or create a *Notification Hub*
+	- Select or create a *Notification Hub*
 - Once your app is connected, press *Configure push notification services*
 - Select the service you want to configure (on our Demo Google)
--- Follow [this](https://docs.microsoft.com/en-us/azure/app-service-mobile/app-service-mobile-xamarin-forms-get-started-push) for instructions on how to configure *Cloud Messaging* on *Firebase*
+	- Follow [this](https://docs.microsoft.com/en-us/azure/app-service-mobile/app-service-mobile-xamarin-forms-get-started-push) for instructions on how to configure *Cloud Messaging* on *Firebase*
 - Fill in the *API Key* with the Firebase *Server key*
 - Update the `GCMSenderId` constant of the demo app with the *Sender ID*
 
@@ -94,8 +94,8 @@ Your app can now receive push notifications! Let's add some server-side logic in
 - Create the `EventUpdate` table (do not set any permissions)
 - Select the table and then press *Edit script*
 - A new window will open with the server-side code of the table. Replace it with the code below.
--- With this code, on every insert operation a push notification will be sent to all devices
--- The notification message will be the `message` property of the inserted item
+	- With this code, on every insert operation a push notification will be sent to all devices
+	- The notification message will be the `message` property of the inserted item
 
 ```javascript
 var azureMobileApps = require('azure-mobile-apps'),
@@ -176,7 +176,15 @@ Step five, in order to monitor our app's activity we'll enable [Mobile Center](h
 
 ## Test
 
-You are finally ready to run the demo app:
+Before testing the demo make sure you have updated all the below constants during setup:
+- `ApplicationUrl`
+- `EventId`
+- `GCMSenderId`
+- `CognitiveServicesKey`
+- `MobileCenterAndroidKey`
+- `MobileCenterIosKey`
+
+If so, you are finally ready to run the demo app:
 - The demo currently shows only one Event
 - The Event's Activities are automatically grouped by their place
 - *My Schedule* tab contains the bookmarked Activities, `UserActivities` (needs authentication)
